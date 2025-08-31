@@ -15,7 +15,7 @@ const registerUser = asyncHandler(async (req,res)=>
         throw new Error("User Already exists");
     }
 
-
+    
     const hashedPassword=await bcrypt.hash(password,10);
     const user=await User.create({
         username,
@@ -48,7 +48,7 @@ const loginUser=asyncHandler(async (req,res)=>
             },
         },
         process.env.ACCESS_TOKEN_SECRET,
-        {expiresIn: "1m"}
+        {expiresIn: "15m"}
     );
         res.status(200).json({accessToken})
     }
